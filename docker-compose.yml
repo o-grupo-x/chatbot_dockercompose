@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./chatbot_backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - redebridge
+
+  db:
+    build:
+      context: ./chatbot_database
+      dockerfile: Dockerfile
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: chatbotdb
+    networks:
+      - redebridge
+
+  frontend:
+    build:
+      context: ./chatbots_frontend_x
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - redebridge
+
+volumes:
+  postgres_data:
+
+networks:
+  redebridge:
+    driver: bridge
