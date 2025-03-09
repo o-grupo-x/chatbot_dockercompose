@@ -1,0 +1,8 @@
+flask
+flask-cors
+openai
+python-dotenv
+ollama
+flask_sqlalchemy
+PyJWT
+psycopg2-binary
