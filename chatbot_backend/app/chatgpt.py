@@ -3,7 +3,7 @@ from config import Config
 
 client = OpenAI(api_key=Config.OPENAI_API_KEY)
 
-def chat_with_gpt(prompt: str, history: list, model="gpt-4", max_tokens=150):
+def chat_with_gpt(prompt: str, history: list, model="gpt-4o-mini", max_tokens=50):
     """Handles conversation with OpenAI GPT, including chat history."""
     messages = [{"role": "system", "content": "Você é um assistente útil."}]
 
